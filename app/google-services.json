@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "323177600026",
+    "firebase_url": "https://turnos-deportivos.firebaseio.com",
+    "project_id": "turnos-deportivos",
+    "storage_bucket": "turnos-deportivos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323177600026:android:c74c2ee71d611e45",
+        "android_client_info": {
+          "package_name": "com.example.guillermo.appturnos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323177600026-08fii93h4gtohfp6fk2kreojdajjpcq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_kl0sjUDD8SkgW02FJzjJN_22loZCpSg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

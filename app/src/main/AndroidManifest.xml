@@ -7,7 +7,7 @@
     <application
         android:name=".TurnosApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -26,9 +26,16 @@
             android:name=".main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".turnoslist.ui.TurnosActivity"
+        <activity
+            android:name=".login.ui.ResgistrarActivity"
+            android:label="@string/login.btn.singup"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+
+            android:name=".turnoslist.ui.TurnosActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".reservarturno.ui.ReservaActivity"></activity>
     </application>
 
 </manifest>

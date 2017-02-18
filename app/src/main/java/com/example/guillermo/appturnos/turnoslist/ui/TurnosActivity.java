@@ -7,19 +7,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.guillermo.appturnos.R;
 import com.example.guillermo.appturnos.login.ui.LoginActivity;
-import com.example.guillermo.appturnos.store.StoreFragment;
+
+import com.example.guillermo.appturnos.turno.ui.OnItemClickListener;
+import com.example.guillermo.appturnos.turno.ui.TurnoFragment;
 import com.example.guillermo.appturnos.turnoslist.TurnosListPresenter;
 import com.example.guillermo.appturnos.turnoslist.TurnosListPresenterImpl;
 import com.example.guillermo.appturnos.turnoslist.adapter.TurnosListAdapter;
-import com.example.guillermo.appturnos.turnoslist.entities.Turno;
+import com.example.guillermo.appturnos.turno.entities.Turno;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,13 +37,8 @@ public class TurnosActivity extends AppCompatActivity implements TurnosListView,
     ViewPager container;
     private TurnosListPresenter turnosListPresenter;
     private TurnosListAdapter adapter;
-    private StoreFragment storeFragment;
-    private StoreFragment storeFragment2;
-    private StoreFragment storeFragment3;
-    private StoreFragment storeFragment4;
-    private StoreFragment storeFragment5;
-    private StoreFragment storeFragment6;
-    private StoreFragment storeFragment7;
+    private TurnoFragment turnoFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +47,32 @@ public class TurnosActivity extends AppCompatActivity implements TurnosListView,
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         turnosListPresenter = new TurnosListPresenterImpl(this);
+        turnosListPresenter.onCreate();
+
         toolbar.setLogo(R.drawable.bolafutbol);
+        //toolbar.setSubtitle("guille");
+        toolbar.setSubtitle(turnosListPresenter.getCurrentEmail());
+        //Log.d("Subtitle", turnosListPresenter.getCurrentUserEmail()); VER
         setupAdapter();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        turnosListPresenter.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        turnosListPresenter.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        turnosListPresenter.onDestroy();
+
     }
 
     @Override
@@ -96,32 +118,33 @@ public class TurnosActivity extends AppCompatActivity implements TurnosListView,
     }
 
     private void setupAdapter() {
-        storeFragment = new StoreFragment();
-        storeFragment2 = new StoreFragment();
-        storeFragment3 = new StoreFragment();
-        storeFragment4 = new StoreFragment();
-        storeFragment5 = new StoreFragment();
-        storeFragment6 = new StoreFragment();
-        storeFragment7 = new StoreFragment();
-
-
-      /*  imageFragment.setChangeListener(new ImageFragment.ChangeListener() {
+         /*  imageFragment.setChangeListener(new ImageFragment.ChangeListener() {
             @Override
             public void onChange() {
-                storeFragment.updateList();
+                turnoFragment.updateList();
             }
         });
         Cuando cambio de tab actualiza la Lista
         */
 
-        Fragment[] fragments = new Fragment[]{storeFragment, storeFragment2, storeFragment3, storeFragment4, storeFragment5, storeFragment6, storeFragment7};
+        //Fragment[] fragments = new Fragment[]{turnoFragment, storeFragment2, storeFragment3, storeFragment4, storeFragment5, storeFragment6, storeFragment7};
         //   String[] titles = new String[]{getString(R.string.main_header_images), getString(R.string.main_header_store), getString(R.string.pestana3), getString(R.string.pestana4), getString(R.string.pestana5), getString(R.string.pestana6), getString(R.string.pestana7)};
-
+        Fragment[] fragments = new Fragment[10];
         String[] titles = turnosListPresenter.obtenerDias();
+        //turnoFragment.setContext(this.getApplicationContext());
+        for (int i = 0; i < 10; i++) {
+            turnoFragment = new TurnoFragment();
+            turnoFragment.setTittle(titles[i]);
+            turnosListPresenter.obtenerTurnosDisp(titles[i]);
+            fragments[i] = turnoFragment;
+
+        }
+
         adapter = new TurnosListAdapter(getSupportFragmentManager(), fragments, titles);
         container.setAdapter(adapter);
 
         tabs.setupWithViewPager(container);
+
         tabs.setTabMode(tabs.MODE_SCROLLABLE);
     }
 }

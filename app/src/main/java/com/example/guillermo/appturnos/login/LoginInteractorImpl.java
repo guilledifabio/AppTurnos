@@ -12,13 +12,13 @@ public class LoginInteractorImpl implements LoginInteractor {
     }
 
     @Override
-    public void doSignUp(final String email, final String password) {
-        loginRepository.signUp(email, password);
+    public void doSignUp(String nombre,String apellido,String telefono,String email, String password) {
+        loginRepository.signUp( nombre, apellido, telefono, email, password);
     }
 
     @Override
     public void doSignIn(String email, String password) {
-        loginRepository.signIn(email, password);
+        loginRepository.signIn(null,null,null,email, password);
     }
 
     @Override

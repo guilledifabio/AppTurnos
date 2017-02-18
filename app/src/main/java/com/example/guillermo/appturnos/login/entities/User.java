@@ -6,18 +6,49 @@ import java.util.Map;
  * Created by ykro.
  */
 public class User {
+    String nombre;
+    String apellido;
+    String telefono;
     String email;
     boolean online;
-    Map<String, Boolean> contacts;
+    Boolean admin;
+
     public final static boolean ONLINE = true;
     public final static boolean OFFLINE = false;
 
     public User(){ }
 
-    public User(String email, boolean online, Map<String, Boolean> contacts){
+    public User(String nombre, String apellido, String telefono, String email, boolean online, Boolean admin) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
         this.email = email;
         this.online = online;
-        this.contacts = contacts;
+        this.admin = admin;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        apellido = apellido;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getEmail() {
@@ -36,11 +67,19 @@ public class User {
         this.online = online;
     }
 
-    public Map<String, Boolean> getContacts() {
-        return contacts;
+    public Boolean getAdmin() {
+        return admin;
     }
 
-    public void setContacts(Map<String, Boolean> contacts) {
-        this.contacts = contacts;
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
+    public static boolean isONLINE() {
+        return ONLINE;
+    }
+
+    public static boolean isOFFLINE() {
+        return OFFLINE;
     }
 }

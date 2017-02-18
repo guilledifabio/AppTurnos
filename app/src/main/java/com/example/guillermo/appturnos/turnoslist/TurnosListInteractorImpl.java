@@ -1,7 +1,5 @@
 package com.example.guillermo.appturnos.turnoslist;
 
-import com.example.guillermo.appturnos.turnoslist.entities.Turno;
-
 /**
  * Created by Guillermo on 29/09/2016.
  */
@@ -18,10 +16,6 @@ public class TurnosListInteractorImpl implements TurnosListInteractor {
         turnosListRepository.reservarTurno(id);
     }
 
-    @Override
-    public void singOff() {
-        turnosListRepository.signOff();
-    }
 
     @Override
     public String[] obtenerDias() {
@@ -31,5 +25,36 @@ public class TurnosListInteractorImpl implements TurnosListInteractor {
     @Override
     public void cancelarReserva(String id) {
         turnosListRepository.cancelarReserva(id);
+    }
+
+    @Override
+    public String getCurrentEmail() {
+        return turnosListRepository.getCurrentEmail();
+    }
+
+    @Override
+    public void destroyTurnosListListener() {
+        turnosListRepository.destroyTurnosListListener();
+    }
+
+    @Override
+    public void subscribeForTurnosListUpdates() {
+        turnosListRepository.subscribeForTurnosListUpdates();
+    }
+
+    @Override
+    public void subscribeForHorariosUpdates(String dia) {
+        turnosListRepository.subscribeForHorariosUpdates(dia);
+    }
+
+    @Override
+    public void getCanchaById(String idcancha) {
+        turnosListRepository.getCanchaById(idcancha);
+    }
+
+    @Override
+    public void unSubscribeForTrunosEvents() {
+        turnosListRepository.unSubscribeForContactListUpdates();
+
     }
 }

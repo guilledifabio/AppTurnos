@@ -28,13 +28,14 @@ public class LoginPresenterImpl implements LoginPresenter {
         loginInteractor.doSignIn(email, password);
     }
 
+
     @Override
-    public void registerNewUser(String email, String password) {
+    public void registerNewUser(String nombre,String apellido,String telefono,String email, String password) {
         if (loginView != null) {
             loginView.disableInputs();
             loginView.showProgress();
         }
-        loginInteractor.doSignUp(email, password);
+        loginInteractor.doSignUp(nombre,apellido,telefono,email, password);
     }
 
     @Override

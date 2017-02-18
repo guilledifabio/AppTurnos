@@ -20,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Map;
 
 
-
 /**
  * Created by ykro.
  */
@@ -29,20 +28,20 @@ public class LoginRepositoryImpl implements LoginRepository {
     private DatabaseReference dataReference;
     private DatabaseReference myUserReference;
 
-    public LoginRepositoryImpl(){
+    public LoginRepositoryImpl() {
         helper = FirebaseHelper.getInstance();
         dataReference = helper.getDataReference();
         myUserReference = helper.getMyUserReference();
     }
 
     @Override
-    public void signUp(final String email, final String password) {
+    public void signUp(final String nombre, final String apellido, final String telefono, final String email, final String password) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         postEvent(LoginEvent.onSignUpSuccess);
-                        signIn(email, password);
+                        signIn(nombre, apellido, telefono, email, password);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -54,7 +53,7 @@ public class LoginRepositoryImpl implements LoginRepository {
     }
 
     @Override
-    public void signIn(String email, String password) {
+    public void signIn(final String nombre, final String apellido, final String telefono, String email, String password) {
         try {
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(email, password)
@@ -65,8 +64,9 @@ public class LoginRepositoryImpl implements LoginRepository {
                             myUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot snapshot) {
-                                    initSignIn(snapshot);
+                                    initSignIn(nombre, apellido, telefono, snapshot);
                                 }
+
                                 @Override
                                 public void onCancelled(DatabaseError firebaseError) {
                                     postEvent(LoginEvent.onSignInError, firebaseError.getMessage());
@@ -92,7 +92,7 @@ public class LoginRepositoryImpl implements LoginRepository {
             myUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    initSignIn(snapshot);
+                    initSignIn(null, null, null, snapshot);
                 }
 
                 @Override
@@ -105,19 +105,19 @@ public class LoginRepositoryImpl implements LoginRepository {
         }
     }
 
-    private void registerNewUser() {
+    private void registerNewUser(String nombre, String apellido, String telefono) {
         String email = helper.getAuthUserEmail();
         if (email != null) {
-            User currentUser = new User(email, true, null);
+            User currentUser = new User(nombre, apellido, telefono, email, true, false);
             myUserReference.setValue(currentUser);
         }
     }
 
-    private void initSignIn(DataSnapshot snapshot){
+    private void initSignIn(String nombre, String apellido, String telefono, DataSnapshot snapshot) {
         User currentUser = snapshot.getValue(User.class);
 
         if (currentUser == null) {
-            registerNewUser();
+            registerNewUser(nombre, apellido, telefono);
         }
         helper.changeUserConnectionStatus(User.ONLINE);
         postEvent(LoginEvent.onSignInSuccess);

@@ -1,10 +1,8 @@
 package com.example.guillermo.appturnos.image.ui;
 
 
-//import ar.edu.unrn.lia.capacitacionhorizonte1.image.entity.Image;
-
-import com.example.guillermo.appturnos.image.entity.Image;
+import com.example.guillermo.appturnos.turno.entities.Turno;
 
 public interface OnItemClickListener {
-   void onItemClick(Image tweet);
+    void onItemClick(Turno turno);
 }

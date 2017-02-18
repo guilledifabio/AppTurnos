@@ -1,6 +1,6 @@
 package com.example.guillermo.appturnos.turnoslist.ui;
 
-import com.example.guillermo.appturnos.turnoslist.entities.Turno;
+import com.example.guillermo.appturnos.turno.entities.Turno;
 
 /**
  * Created by Guillermo on 29/09/2016.

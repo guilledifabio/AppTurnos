@@ -1,7 +1,9 @@
 package com.example.guillermo.appturnos.turnoslist;
 
-import com.example.guillermo.appturnos.turnoslist.entities.Turno;
 import com.example.guillermo.appturnos.turnoslist.events.TurnosListEvent;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Guillermo on 29/09/2016.
@@ -16,7 +18,11 @@ public interface TurnosListPresenter {
 
     void onDestroy();
 
+    String getCurrentEmail();
+
     void singOff();
+
+    void obtenerTurnosDisp(String dia);
 
     String[] obtenerDias();
 
@@ -26,5 +32,6 @@ public interface TurnosListPresenter {
 
     void cancelarReserva(String id);
 
-    void onEvnentMainThread(TurnosListEvent turnosListEvent);
+    void onEventMainThread(TurnosListEvent turnosListEvent);
+
 }

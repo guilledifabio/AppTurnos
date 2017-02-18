@@ -12,13 +12,11 @@ import android.widget.ProgressBar;
 
 import com.example.guillermo.appturnos.R;
 import com.example.guillermo.appturnos.image.adapter.ImagesAdapter;
-import com.example.guillermo.appturnos.image.entity.Image;
 import com.example.guillermo.appturnos.image.ui.OnItemClickListener;
 import com.example.guillermo.appturnos.lib.GlideImageLoader;
 import com.example.guillermo.appturnos.lib.ImageLoader;
+import com.example.guillermo.appturnos.turno.entities.Turno;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 import butterknife.Bind;
@@ -76,13 +74,14 @@ public class StoreFragment extends Fragment implements OnItemClickListener {
         adapter.setItems(resultado);
     }
 */
-    @Override
-    public void onItemClick(Image tweet) {
 
-    }
 
     public void updateList() {
              //dbInitListImage();
             }
 
+    @Override
+    public void onItemClick(Turno turno) {
+
+    }
 }

@@ -11,7 +11,7 @@ public class TurnosListSessionInteractorImpl implements TurnosListSessionInterac
     }
 
     @Override
-    public void signOff() {
+    public void singOff() {
         turnosListRepository.signOff();
     }
 
@@ -20,5 +20,8 @@ public class TurnosListSessionInteractorImpl implements TurnosListSessionInterac
         return turnosListRepository.getCurrentEmail();
     }
 
-
+    @Override
+    public void changeConnectionStatus(boolean online) {
+        turnosListRepository.changeUserConnectionStatus(online);
+    }
 }

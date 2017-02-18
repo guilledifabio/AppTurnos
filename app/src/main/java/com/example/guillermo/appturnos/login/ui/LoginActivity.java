@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity
         loginPresenter.onCreate();
         loginPresenter.checkForAuthenticatedUser();
 
+
     }
 
     @Override
@@ -64,9 +65,14 @@ public class LoginActivity extends AppCompatActivity
     @Override
     @OnClick(R.id.btnSignup)
     public void handleSignUp() {
+                Intent intent = new Intent(this, ResgistrarActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+     /* loginPresenter.registerNewUser(editTxtEmail.getText().toString(),
+                editTxtPassword.getText().toString());*/
 
-        loginPresenter.registerNewUser(editTxtEmail.getText().toString(),
-                editTxtPassword.getText().toString());
     }
 
     @Override
@@ -118,7 +124,7 @@ public class LoginActivity extends AppCompatActivity
 
     @Override
     public void newUserSuccess() {
-        Snackbar.make(container, R.string.login_notice_message_useradded, Snackbar.LENGTH_SHORT).show();
+
     }
 
     private void setInputs(boolean enabled) {

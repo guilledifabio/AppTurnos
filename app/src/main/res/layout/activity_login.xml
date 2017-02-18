@@ -11,20 +11,6 @@
     tools:context=".login.ui.LoginActivity">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/wrapperEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/wrapperPassword">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/login.message.email"
-            android:inputType="textEmailAddress"
-            android:id="@+id/editTxtEmail" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
         android:id="@+id/wrapperPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login.message.signup"
-            android:id="@+id/btnSignup"/>
+            android:id="@+id/btnSignup"
+            android:elevation="0dp" />
     </LinearLayout>
 
     <ProgressBar
@@ -66,4 +53,20 @@
         android:layout_below="@+id/layoutButtons"
         android:layout_centerInParent="true"
         android:visibility="gone" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/wrapperEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/wrapperPassword"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="37dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login.message.email"
+            android:inputType="textEmailAddress"
+            android:id="@+id/editTxtEmail" />
+    </android.support.design.widget.TextInputLayout>
 </RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:elevation="@dimen/cardview_default_elevation">
+
+    <RelativeLayout
+        android:id="@+id/relativelayaot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgMedia"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_alignEnd="@+id/txtText"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/bolafutbol" />
+
+        <TextView
+            android:id="@+id/txtText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imgMedia"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="Toque para seleccionar una cancha " />
+
+
+        <TextView
+            android:id="@+id/horaturno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txtText"
+            android:layout_alignStart="@+id/txtText"
+            android:layout_marginStart="39dp"
+            android:text="17:00"
+            android:textColor="@color/accentColor"
+            android:textColorHighlight="@color/backgroundColor"
+            android:textSize="40dp" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

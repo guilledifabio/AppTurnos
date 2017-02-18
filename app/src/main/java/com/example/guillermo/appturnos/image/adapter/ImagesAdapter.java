@@ -41,7 +41,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Image tweet = items.get(position);
-        //   holder.setClickListener(tweet, clickListener);
+        // holder.setClickListener(tweet, clickListener);
         //    holder.txtText.setText(tweet.getText()); Para ponerle el texto
         //carga la imagen en Descargas imageLoader.load(holder.imgMedia, tweet.getImageURL());
     }

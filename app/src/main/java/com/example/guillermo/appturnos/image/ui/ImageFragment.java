@@ -24,6 +24,7 @@ import com.example.guillermo.appturnos.image.adapter.ImagesAdapter;
 import com.example.guillermo.appturnos.image.entity.Image;
 import com.example.guillermo.appturnos.lib.GlideImageLoader;
 import com.example.guillermo.appturnos.lib.ImageLoader;
+import com.example.guillermo.appturnos.turno.entities.Turno;
 import com.google.gson.JsonObject;
 
 import org.json.JSONException;
@@ -109,11 +110,11 @@ public class ImageFragment extends Fragment implements OnItemClickListener, Call
 
 
     @Override
-    public void onItemClick(Image image) {
+    public void onItemClick(Turno turno) {
         //String textInfo = String.format(getString(R.string.info_navegate_url), image.getSourceURL());
         //  Snackbar.make(container, textInfo, Snackbar.LENGTH_SHORT).show();
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(image.getSourceURL()));
-        startActivity(intent);
+      //  Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(image.getSourceURL()));
+      //  startActivity(intent);
 
         //Persistir
        /* Log.i(TAG, image.getText());

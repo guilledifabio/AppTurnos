@@ -1,5 +1,6 @@
 package com.example.guillermo.appturnos.turnoslist.entities;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -8,16 +9,17 @@ import java.util.Map;
 public class Complejo {
     String nombre;
     Direccion direccion;
-//String hora, Boolean Reservado
-    Map<String, Boolean> turnos;
+    String logo;
+    List<Cancha> canchas;
 
+    public Complejo() {
+    }
 
-    public Complejo(){ }
-
-    public Complejo(String nombre, Direccion direccion, Map<String, Boolean> turnos) {
+    public Complejo(String nombre, Direccion direccion, String logo, List<Cancha> canchas) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.turnos = turnos;
+        this.logo = logo;
+        this.canchas = canchas;
     }
 
     public String getNombre() {
@@ -36,11 +38,19 @@ public class Complejo {
         this.direccion = direccion;
     }
 
-    public Map<String, Boolean> getTurnos() {
-        return turnos;
+    public String getLogo() {
+        return logo;
     }
 
-    public void setTurnos(Map<String, Boolean> turnos) {
-        this.turnos = turnos;
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public List<Cancha> getCanchas() {
+        return canchas;
+    }
+
+    public void setCanchas(List<Cancha> canchas) {
+        this.canchas = canchas;
     }
 }

@@ -1,4 +1,7 @@
 package com.example.guillermo.appturnos.domain;
+
+import android.util.Log;
+
 import com.example.guillermo.appturnos.login.entities.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -6,6 +9,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -20,6 +24,11 @@ public class FirebaseHelper {
     private final static String SEPARATOR = "___";
     private final static String CHATS_PATH = "chats";
     private final static String USERS_PATH = "users";
+    private final static String TURNOS_PATH = "turnos";
+    private final static String HORARIO_PATH = "horarios";
+    private final static String CANCHAS_PATH = "canchas";
+    private final static String COMPLEJOS_PATH = "complejos";
+
     public final static String CONTACTS_PATH = "contacts";
 
     private static class SingletonHolder {
@@ -30,7 +39,7 @@ public class FirebaseHelper {
         return SingletonHolder.INSTANCE;
     }
 
-    public FirebaseHelper(){
+    public FirebaseHelper() {
         dataReference = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -47,7 +56,7 @@ public class FirebaseHelper {
         return email;
     }
 
-    public DatabaseReference getUserReference(String email){
+    public DatabaseReference getUserReference(String email) {
         DatabaseReference userReference = null;
         if (email != null) {
             String emailKey = email.replace(".", "_");
@@ -56,26 +65,70 @@ public class FirebaseHelper {
         return userReference;
     }
 
+    public DatabaseReference getTurnosReference(String fecha) {
+        DatabaseReference turnoReference = null;
+        if (fecha != null) {
+            String turnoKey = fecha.replace("/", "_");
+            turnoReference = dataReference.getRoot().child(TURNOS_PATH).child(turnoKey);
+        }
+        return turnoReference;
+    }
+
+    public DatabaseReference getCanchaReference(String idcancha) {
+        DatabaseReference canchaReference = null;
+        if (idcancha != null) {
+            Log.d("idcancha", idcancha);
+
+            canchaReference = dataReference.getRoot().child(CANCHAS_PATH);
+
+        }
+        return canchaReference;
+    }
+
+    public DatabaseReference getComplejoReference(String idcomplejo) {
+        DatabaseReference complejoReference = null;
+        if (idcomplejo != null) {
+            Log.d("idcancha", idcomplejo);
+
+            complejoReference = dataReference.child(COMPLEJOS_PATH).child(idcomplejo);
+        }
+        return complejoReference;
+    }
+
+    public DatabaseReference getHorariosReference(String dia) {
+        DatabaseReference horarioReference = null;
+        if (dia != null) {
+
+            horarioReference = dataReference.getRoot().child(HORARIO_PATH).child(dia);
+
+        }
+        return horarioReference;
+    }
+
+    /* public DatabaseReference getHorariosReference(String fecha){
+         return getTurnosReference(fecha).child(HORARIOS_PATH);
+     }*/
     public DatabaseReference getMyUserReference() {
         return getUserReference(getAuthUserEmail());
     }
 
-    public DatabaseReference getContactsReference(String email){
+    public DatabaseReference getContactsReference(String email) {
         return getUserReference(email).child(CONTACTS_PATH);
     }
 
-    public DatabaseReference getMyContactsReference(){
+
+    public DatabaseReference getMyContactsReference() {
         return getContactsReference(getAuthUserEmail());
     }
 
-    public DatabaseReference getOneContactReference(String mainEmail, String childEmail){
-        String childKey = childEmail.replace(".","_");
+    public DatabaseReference getOneContactReference(String mainEmail, String childEmail) {
+        String childKey = childEmail.replace(".", "_");
         return getUserReference(mainEmail).child(CONTACTS_PATH).child(childKey);
     }
 
-    public DatabaseReference getChatsReference(String receiver){
-        String keySender = getAuthUserEmail().replace(".","_");
-        String keyReceiver = receiver.replace(".","_");
+    public DatabaseReference getChatsReference(String receiver) {
+        String keySender = getAuthUserEmail().replace(".", "_");
+        String keyReceiver = receiver.replace(".", "_");
 
         String keyChat = keySender + SEPARATOR + keyReceiver;
         if (keySender.compareTo(keyReceiver) > 0) {
@@ -104,7 +157,7 @@ public class FirebaseHelper {
                     DatabaseReference reference = getOneContactReference(email, myEmail);
                     reference.setValue(online);
                 }
-                if (signoff){
+                if (signoff) {
                     FirebaseAuth.getInstance().signOut();
                 }
             }
@@ -119,7 +172,7 @@ public class FirebaseHelper {
         notifyContactsOfConnectionChange(online, false);
     }
 
-    public void signOff(){
+    public void signOff() {
         notifyContactsOfConnectionChange(User.OFFLINE, true);
     }
 }

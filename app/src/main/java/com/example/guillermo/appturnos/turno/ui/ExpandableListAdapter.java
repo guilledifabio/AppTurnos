@@ -5,6 +5,7 @@ package com.example.guillermo.appturnos.turno.ui;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.example.guillermo.appturnos.R;
+import com.example.guillermo.appturnos.reservarturno.ui.ReservaActivity;
 import com.example.guillermo.appturnos.turnoslist.TurnosListPresenter;
 
 import java.util.HashMap;
@@ -49,7 +51,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
+    public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
         final String childText = (String) getChild(groupPosition, childPosition);
@@ -61,11 +63,25 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             ButterKnife.bind(this, convertView);
         }
 
-        TextView txtListChild = (TextView) convertView
+        final TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.complejo);
         txtListChild.setText(childText);
+        txtListChild.setOnClickListener(new TextView.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Turno seleccionado", (String) getChild(groupPosition, childPosition) + getGroup(groupPosition));
+                Intent i = new Intent(_context, ReservaActivity.class);
+                i.putExtra(ReservaActivity.FECHA, "2017");
+                i.putExtra(ReservaActivity.CANCHA, (String) getChild(groupPosition, childPosition));
+                i.putExtra(ReservaActivity.HORA, (String) getGroup(groupPosition));
+                _context.startActivity(i);
+
+
+            }
+        });
         return convertView;
     }
+
 
     public void add(HashMap<String, List<String>> listDataChild) {
         this._listDataChild = listDataChild;
@@ -114,6 +130,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.horaturno);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+
 
         return convertView;
     }

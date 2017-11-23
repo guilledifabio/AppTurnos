@@ -120,12 +120,6 @@ public class TurnoFragment extends Fragment implements OnItemClickListener {
     @Override
     public void onItemClick(Turno turno) {
 
-        Log.d("Turno seleccionado", turno.getFecha() + " " + turno.getHora());
-        Log.d("Titulo", tittle);
-        Intent i = new Intent(getActivity(), ReservaActivity.class);
-        i.putExtra(ReservaActivity.FECHA, turno.getFecha());
-        i.putExtra(ReservaActivity.HORA, turno.getHora());
-        startActivity(i);
 
     }
 

@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 public class ReservaActivity extends AppCompatActivity {
     public final static String FECHA = "fecha";
     public final static String HORA = "hora";
+    public final static String CANCHA = "cancha";
     @Bind(R.id.app_bar_image)
     ImageView appBarImage;
     @Bind(R.id.toolbar)
@@ -53,8 +54,8 @@ public class ReservaActivity extends AppCompatActivity {
     private void setToolbarData(Intent i) {
         String hora = i.getStringExtra(HORA);
         String fecha = i.getStringExtra(FECHA);
-        toolbar.setTitle("Quinta Basso");
-
+        String cancha = i.getStringExtra(CANCHA);
+        toolbar.setTitle(cancha);
         horatxt.setText(hora);
         fechatxt.setText(fecha);
 

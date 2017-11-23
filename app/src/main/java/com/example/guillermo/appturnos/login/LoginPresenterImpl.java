@@ -25,7 +25,8 @@ public class LoginPresenterImpl implements LoginPresenter {
             loginView.disableInputs();
             loginView.showProgress();
         }
-        loginInteractor.doSignIn(email, password);
+        onSignInSuccess();
+        //loginInteractor.doSignIn(email, password);
     }
 
 

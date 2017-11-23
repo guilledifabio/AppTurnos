@@ -157,11 +157,11 @@ public class TurnosListRepositoryImpl implements TurnosListRepository {
                     horarios = (HashMap<String ,HashMap<String, String>>) dataSnapshot.getValue();
                     if (horarios != null) {
                         Log.d("horario", String.valueOf(horarios.toString()));
-                        for (String key : horarios.get(dataSnapshot.getKey()).keySet()) {
+                     /*   for (String key : horarios.get(dataSnapshot.getKey()).keySet()) {
                             valores.add(horarios.get(key));
                             Log.d("value", String.valueOf(horarios.get(key)));
 
-                        }
+                        }*/
                         canchasdisp.put(dataSnapshot.getKey(), valores);
                         Log.d("Horarios Disponibles", String.valueOf(canchasdisp.toString()));
                     }

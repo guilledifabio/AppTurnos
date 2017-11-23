@@ -54,8 +54,8 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     @Override
     public void signIn(final String nombre, final String apellido, final String telefono, String email, String password) {
-        try {
-            FirebaseAuth auth = FirebaseAuth.getInstance();
+        /*try {
+           FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(email, password)
                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
@@ -82,7 +82,8 @@ public class LoginRepositoryImpl implements LoginRepository {
                     });
         } catch (Exception e) {
             postEvent(LoginEvent.onSignInError, e.getMessage());
-        }
+        }*/
+
     }
 
     @Override
